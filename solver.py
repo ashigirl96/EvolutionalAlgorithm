@@ -42,7 +42,7 @@ class NearestN(Solver):
   def solve(self):
     self.dist = 0
     nearest_city = None
-    last_city = randint(0, self.dim)
+    last_city = randint(0, self.dim - 1)
     self.never_visited.remove(last_city)
     while self.never_visited:
       nearest_city_dist = 10000000000
@@ -76,7 +76,7 @@ class TwoOpt(Solver):
 
   def _improve(self, visited):
     for i in range(0, self.dim - 1):
-      for j in map(self._l, range(i + 2, i + self.dim - 1)):
+      for j in map(self._l, range(i + 2, i + self.dim)):
         j1 = self._l(j + 1)
         # print(i, i + 1, "|", j, j1)
         _tmp_visited = visited
